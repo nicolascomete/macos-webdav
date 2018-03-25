@@ -5,7 +5,7 @@ A very simple setup based on nginx + WebDAV module with basic auth.
 A typical usage: for use with Infuse (on tvOS or iOS), specially dedicated to UHD streaming (successfully
 tested with rates > 300 Mbps).
 
-Setup nginx as macOS service
+nginx is configured to run as macOS service
 
 ## Usage
 

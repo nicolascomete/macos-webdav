@@ -21,7 +21,6 @@ cd nginx-${NGINX_VERSION}
 ./configure \
 	--with-http_dav_module --add-module=../nginx-dav-ext-module \
 	--prefix=/etc/nginx \
-	--sbin-path=/usr/local/bin \
-	--user=$(id -un) --group=$(id -gn)
+	--sbin-path=/usr/local/bin
 make
 cp objs/nginx ../bin/nginx 

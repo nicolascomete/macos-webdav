@@ -23,7 +23,7 @@ sudo mkdir -p /etc/nginx/conf
 sudo mkdir -p /usr/local/bin
 
 # Setup password
-sudo htpasswd -c /etc/nginx/auth/webdav webdav $WEBDAV_PASSWORD
+sudo htpasswd -b -c /etc/nginx/auth/webdav webdav $WEBDAV_PASSWORD
 
 # Install
 sudo cp bin/nginx /usr/local/bin/
@@ -31,6 +31,8 @@ sudo chmod a+x /usr/local/bin/nginx
 
 # Config file
 cat > nginx.conf <<EOF
+user $(id -un) $(id -gn);
+
 worker_processes 2;
 events {
   worker_connections  1024;
@@ -69,7 +71,7 @@ sudo launchctl stop nginx || true
 sudo pkill nginx || true
 
 # Register nginx as a service 
-sudo cp ../nginx.plist /System/Library/LaunchDaemons/
+sudo cp nginx.plist /System/Library/LaunchDaemons/
 sudo chown root:staff /System/Library/LaunchAgents/nginx.plist
 sudo launchctl load -F /System/Library/LaunchDaemons/nginx.plist
 sudo launchctl start nginx 
